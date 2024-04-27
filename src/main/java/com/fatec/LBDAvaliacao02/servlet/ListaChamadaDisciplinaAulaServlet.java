@@ -16,12 +16,12 @@ import com.fatec.LBDAvaliacao02.controller.CursoController;
 import com.fatec.LBDAvaliacao02.model.Curso;
 
 /**
- * Essa Classe é responsável por fazer o request do .jsp do tipo curso.
+ * Essa Classe é responsável por fazer o request do .jsp do tipo lista-chamada.
  */
 @Controller
-public class CursoServlet
+public class ListaChamadaDisciplinaAulaServlet
 {
-	@RequestMapping(name = "curso", value = "/curso", method = RequestMethod.GET)
+	@RequestMapping(name = "lista-chamada", value = "/lista-chamada", method = RequestMethod.GET)
 	public ModelAndView cursoGet(ModelMap model)
 	{
 		List<Curso> cursos = new ArrayList<>();
@@ -38,13 +38,12 @@ public class CursoServlet
 			model.addAttribute("cursos", cursos);
 		}
 		
-		return new ModelAndView("curso");
+		return new ModelAndView("lista-chamada");
 	}
 
-	@RequestMapping(name = "curso", value = "/curso", method = RequestMethod.POST)
+	@RequestMapping(name = "lista-chamada", value = "/lista-chamada", method = RequestMethod.POST)
 	public ModelAndView cursoPost(@RequestParam Map<String, String> allRequestParam, ModelMap model)
 	{
-		return new ModelAndView("curso");
+		return new ModelAndView("lista-chamada");
 	}
-
 }

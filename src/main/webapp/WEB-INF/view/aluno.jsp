@@ -30,14 +30,17 @@
 				<div class="container-fluid">
 					<div class="m-auto">
 						<div class="row">
-							<div class="col-auto p-0 text-center" style="width: 130px;">
-								<button class="btn btn-outline-primary" style="width: 120px" OnClick="window.location.href='./'">home</button>
+							<div class="col-auto p-0 text-center" style="width: 160px;">
+								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='./'">home</button>
 							</div>
-							<div class="col-auto p-0 text-center" style="width: 130px;">
-								<button class="btn btn-outline-primary" style="width: 120px" OnClick="window.location.href='./aluno'">Pagina Aluno</button>
+							<div class="col-auto p-0 text-center" style="width: 160px;">
+								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='./aluno'">Pagina Aluno</button>
 							</div>
-							<div class="col-auto p-0 text-center" style="width: 130px;">
-								<button class="btn btn-outline-primary" style="width: 120px" OnClick="window.location.href='./curso'">Ver Cursos</button>
+							<div class="col-auto p-0 text-center" style="width: 160px;">
+								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='./curso'">Ver Cursos</button>
+							</div>
+							<div class="col-auto p-0 text-center" style="width: 160px;">
+								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='./lista-chamada'">Lista de chamada</button>
 							</div>
 						</div>
 					</div>
@@ -47,11 +50,17 @@
 					<div class="container-fluid">
 						<div class="m-auto">
 							<div class="row">
-								<div class="col-auto p-0 text-center" style="width: 130px;">
-									<button class="btn btn-outline-primary" style="width: 120px" OnClick="window.location.href='./aluno'">Aluno</button>
+								<div class="col-auto p-0 text-center" style="width: 190px;">
+									<button class="btn btn-outline-primary" style="width: 180px" OnClick="window.location.href='./aluno'">Aluno</button>
 								</div>
-								<div class="col-auto p-0 text-center" style="width: 130px;">
-									<button class="btn btn-outline-primary" style="width: 120px" OnClick="window.location.href='./disciplina'">Disciplina</button>
+								<div class="col-auto p-0 text-center" style="width: 190px;">
+									<button class="btn btn-outline-primary" style="width: 180px" OnClick="window.location.href='./disciplina-dispensado'">Disciplina Dispensada</button>
+								</div>
+								<div class="col-auto p-0 text-center" style="width: 190px;">
+									<button class="btn btn-outline-primary" style="width: 180px" OnClick="window.location.href='./disciplina'">Disciplina</button>
+								</div>
+								<div class="col-auto p-0 text-center" style="width: 190px;">
+									<button class="btn btn-outline-primary" style="width: 180px" OnClick="window.location.href='./historico'">Historico</button>
 								</div>
 							</div>
 						</div>
