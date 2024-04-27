@@ -51,7 +51,7 @@ public class CursoServlet
 	}
 
 	@RequestMapping(name = "curso", value = "/curso", method = RequestMethod.POST)
-	public ModelAndView cursoPost(@RequestParam Map<String, String> allRequestParam, @RequestParam("telefone") List<Telefone> requestTelefonesParam, ModelMap model)
+	public ModelAndView cursoPost(@RequestParam Map<String, String> allRequestParam, ModelMap model)
 	{
 		return new ModelAndView("curso");
 	}

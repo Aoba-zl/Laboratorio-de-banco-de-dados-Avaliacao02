@@ -23,6 +23,8 @@ import com.fatec.LBDAvaliacao02.persistence.GenericDao;
 @Controller
 public class DisciplinaController 
 {
+	
+	
 	/**
 	 * Método responsável por buscar as disciplina do aluno atráves do RA dele.
 	 * 

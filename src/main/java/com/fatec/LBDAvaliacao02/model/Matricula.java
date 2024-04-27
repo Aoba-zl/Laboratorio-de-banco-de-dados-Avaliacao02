@@ -25,4 +25,5 @@ public class Matricula
 	private LocalDate anoLimiteGraduacao;
 	private LocalDate anoIngresso;
 	private List<MatriculaDisciplina> md;
+	private String status;
 }
