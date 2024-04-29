@@ -17,7 +17,7 @@
 
 <link rel="stylesheet" type="text/css" href='<c:url value="./resources/css/style.css"/>'>
 
-<title>Disciplina</title>
+<title>Historico</title>
 </head>
 <body>
 <div class="bg-black custom">
@@ -63,7 +63,7 @@
 				</div>
 			</nav>
 		<main>
-			<form action="disciplina" method="post" name="formDisciplina">
+			<form action="historico" method="post" name="formHistorico">
 				<div class="rounded-4 border border-primary form-container m-auto mb-3">
 					<div class="form-floating d-flex mb-3">
 						<input type=text class="form-control input-height" id="floatingInput" placeholder="RA" name="ra" maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '')" value='<c:out value="${ra}"></c:out>'>
@@ -83,39 +83,57 @@
 				</div>
 				<div class="form-container m-auto border border-primary rounded-4 mb-3" style="max-width: 900px; max-height: 690px;">
 					<div class="form-container m-auto" style="max-width: 900px; max-height: 600px; overflow-y: scroll;">
-						<table class="table table-striped" id="tabela-disciplinas">
+						<table class="table table-striped" id="tabela-historico">
 							<thead>
 								<tr>
-									<th class="col">Selecionar Disciplina</th>
+									<th class="col">RA</th>
 									<th class="col">Nome</th>
-									<th class="col">Quantidade de Horas Semanais</th>
-									<th class="col" style="min-width: 120px;">Dia de aula</th>
-									<th class="col">Horario de Inicio</th>
-									<th class="col">Horario de Término</th>
+									<th class="col">Curso</th>
+									<th class="col" style="min-width: 120px;">Data da Matricula</th>
+									<th class="col">Pontuação do Vestibular</th>
+									<th class="col">Posição no Vestibular</th>
 									<th class="col" style="min-width: 130px">Status</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:if test="${not empty disciplinas}">
-									<c:set var="emAndamento" value="false"/>
-									<c:forEach var="d" items="${disciplinas}">
-										<c:if test="${d.umMatriculaDisciplina.status eq 'Em andamento.'}">
-											<c:set var="emAndamento" value="true"/>
-										</c:if>
+								<c:if test="${not empty alunos}">
+									<c:forEach var="a" items="${alunos}">
+										<tr ref="${alunos.ra}">
+											<th scope="row"><c:out value="${a.nome}"/></th>
+											<td><c:out value="${a.matricula.codigoCurso}"/></td>
+											<td><c:out value="${a.matricula.anoIngresso}"/></td>
+											<td><c:out value="${a.vestibular.pontuacao}"/></td>
+											<td><c:out value="${a.vestibular.posicao}"/></td>
+											<td><c:out value="${a.matricula.status}"/></td>
+										</tr>
 									</c:forEach>
+								</c:if>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="form-container m-auto border border-primary rounded-4 mb-3" style="max-width: 900px; max-height: 690px;">
+					<div class="form-container m-auto" style="max-width: 900px; max-height: 600px; overflow-y: scroll;">
+						<table class="table table-striped" id="tabela-historico">
+							<thead>
+								<tr>
+									<th class="col">Codigo da Disciplina</th>
+									<th class="col">Nome da Disciplina</th>
+									<th class="col">Nome do Professor</th>
+									<th class="col">Nota Final</th>
+									<th class="col">Quantidade de Faltas</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:if test="${not empty disciplinas}">
 									<c:forEach var="d" items="${disciplinas}">
 										<tr ref="${d.diaAula}">
-											<td>
-												<div>
-													<input type="checkbox" class="form-check-input checkbox-disciplina" name="checkboxDisciplina" value="${d.codigo}" <c:if test="${emAndamento}">disabled</c:if>>
-												</div>
-											</td>
-											<th scope="row"><c:out value="${d.nome}"/></th>
-											<td><c:out value="${d.qntdHoraSemanais}"/> Horas</td>
-											<td><c:out value="${d.diaAula}"/></td>
+											<th scope="row"><c:out value="${d.codigo}"/></th>
+											<td><c:out value="${d.nome}"/> </td>
+											<td><c:out value="${professores.nome}"/></td>
 											<td><c:out value="${d.horarioInicio}"/></td>
-											<td><c:out value="${d.horarioFim}"/></td>
-											<td><c:out value="${d.umMatriculaDisciplina.status}"/></td>
+											<td><c:out value="${notas}"/></td>
+											<td><c:out value="${faltas}"/></td>
 										</tr>
 									</c:forEach>
 								</c:if>
