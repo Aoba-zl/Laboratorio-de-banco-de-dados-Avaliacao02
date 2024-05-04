@@ -98,8 +98,9 @@
 							<tbody>
 								<c:if test="${not empty alunos}">
 									<c:forEach var="a" items="${alunos}">
-										<tr ref="${alunos.ra}">
-											<th scope="row"><c:out value="${a.nome}"/></th>
+										<tr ref="${a.ra}">
+											<th scope="row"><c:out value="${a.ra}"/></th>
+											<td><c:out value="${a.nome}"/></td>
 											<td><c:out value="${a.matricula.codigoCurso}"/></td>
 											<td><c:out value="${a.matricula.anoIngresso}"/></td>
 											<td><c:out value="${a.vestibular.pontuacao}"/></td>
@@ -127,7 +128,7 @@
 							<tbody>
 								<c:if test="${not empty disciplinas}">
 									<c:forEach var="d" items="${disciplinas}">
-										<tr ref="${d.diaAula}">
+										<tr ref="${d.codigo}">
 											<th scope="row"><c:out value="${d.codigo}"/></th>
 											<td><c:out value="${d.nome}"/> </td>
 											<td><c:out value="${professores.nome}"/></td>

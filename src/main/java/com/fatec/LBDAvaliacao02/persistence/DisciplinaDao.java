@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.fatec.LBDAvaliacao02.model.Aluno;
 import com.fatec.LBDAvaliacao02.model.Disciplina;
 import com.fatec.LBDAvaliacao02.model.MatriculaDisciplina;
 
@@ -219,6 +220,18 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		c.close();
 		
 		return saida;
+		
+	}
+	public String dispensarDisciplina(String ra, int disciplina) throws ClassNotFoundException, SQLException {
+		Connection connection = gDao.getConnection();
+		String querySql;
+		querySql = "EXEC sp_dispensar ?,?";
+		CallableStatement cs = connection.prepareCall(querySql);
+		cs.setString(1, ra);
+		cs.setInt(2, disciplina);
+		cs.execute();
+		cs.close();
+		return "Disciplina dispensada";
 		
 	}
 
