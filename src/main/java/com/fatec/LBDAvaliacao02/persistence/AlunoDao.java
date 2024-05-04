@@ -16,6 +16,8 @@ import org.springframework.stereotype.Repository;
 
 import com.fatec.LBDAvaliacao02.model.Aluno;
 import com.fatec.LBDAvaliacao02.model.Curso;
+import com.fatec.LBDAvaliacao02.model.Disciplina;
+import com.fatec.LBDAvaliacao02.model.Professor;
 import com.fatec.LBDAvaliacao02.model.Telefone;
 import com.fatec.LBDAvaliacao02.model.Vestibular;
 
@@ -230,6 +232,66 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudIud<Aluno,Curso>
             }
         }
 	}
+	public Aluno buscarCabeçalho(Aluno aluno) throws ClassNotFoundException, SQLException {
+		Connection connection = gDao.getConnection();
+		String querySql = "EXEC sp_cabecalho ?";
+        CallableStatement cs = connection.prepareCall(querySql);
+        cs.setString(1, aluno.getRa());
+        ResultSet result = cs.executeQuery();
+        if(result.next()) {
+        	Curso c = new Curso();
+	        aluno.setNome(result.getString("nome"));
+	        c.setNome(result.getString("curso"));
+	        aluno.getMatricula().setCurso(c);
+	        aluno.getMatricula().setAnoIngresso(result.getInt("ano_ingresso"));
+	        aluno.getVestibular().setPontuacao(result.getFloat("pontuacao"));
+	        aluno.getVestibular().setPosicao(result.getInt("posicao"));
+        }
+        cs.close();
+		return aluno;
+		
+	}
+	public List[] buscarHistorico(Aluno aluno, List[] aprovado) throws ClassNotFoundException, SQLException {
+		List<Disciplina> disciplinas = new ArrayList<>();
+		List<String> medias = new ArrayList<>();
+		List<Integer> faltas = new ArrayList<>();
+		Connection connection = gDao.getConnection();
+		String querySql = "EXEC sp_aprovado ?";
+        CallableStatement cs = connection.prepareCall(querySql);
+        cs.setString(1, aluno.getRa());
+        ResultSet result = cs.executeQuery();
+        while(result.next()) {
+        	Disciplina disciplina = new Disciplina();
+        	disciplina.setCodigo(result.getInt("codigo"));
+        	disciplina.setNome(result.getString("nome"));
+        	Professor p = new Professor();
+        	p.setNome(result.getString("professor"));
+        	disciplina.setProfessor(p);
+        	disciplinas.add(disciplina);
+        }
+        querySql = "EXEC sp_media ?";
+        cs = connection.prepareCall(querySql);
+        cs.setString(1, aluno.getRa());
+        result = cs.executeQuery();
+        while(result.next()) {
+        	String media;
+        	media = result.getString("nota");
+        	medias.add(media);
+        }
+        querySql = "EXEC sp_falta ?";
+        cs = connection.prepareCall(querySql);
+        cs.setString(1, aluno.getRa());
+        result = cs.executeQuery();
+        while(result.next()) {
+        	int falta;
+        	falta = result.getInt("falta");
+        	faltas.add(falta);
+        }
+        aprovado[0] = disciplinas;
+        aprovado[1] = medias;
+        aprovado[2] = faltas;
+		return aprovado;
+	}
 	
 	private java.sql.Date toSQLDate(LocalDate data){
 		if (data != null) {
@@ -240,6 +302,9 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudIud<Aluno,Curso>
 	}
 	private LocalDate toLocalDate (Date date) {
         return Optional.ofNullable(date).map(Date::toLocalDate).orElse(null);
-		
+	}
+	private LocalDate toLocalDate(int date) {
+		LocalDate localDate = LocalDate.of(date, date, date);
+		return null;
 	}
 }

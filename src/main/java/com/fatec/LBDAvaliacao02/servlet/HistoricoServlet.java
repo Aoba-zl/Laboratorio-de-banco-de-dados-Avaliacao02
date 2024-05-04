@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fatec.LBDAvaliacao02.controller.DisciplinaController;
+import com.fatec.LBDAvaliacao02.controller.HistoricoController;
+import com.fatec.LBDAvaliacao02.model.Aluno;
 import com.fatec.LBDAvaliacao02.model.Disciplina;
 import com.fatec.LBDAvaliacao02.model.MatriculaDisciplina;
 
@@ -37,8 +39,9 @@ public class HistoricoServlet
 	{
 		//entrada
 		String cmd = allRequestParam.get("botao"); // Obtém o valor do botão.
-		String ra = allRequestParam.get("ra"); // Obtém o valor do ra.
-		String matricula = ""; // String matricula iniciada para a obtenção do valor depois.
+		String ra = allRequestParam.get("ra").trim(); // Obtém o valor do ra.
+		List[] aprovado = new ArrayList[3];
+		Aluno aluno = new Aluno();
 		List<Disciplina> disciplinas = new ArrayList<>();
 		
 		
@@ -56,11 +59,10 @@ public class HistoricoServlet
 			
 			if(cmd.contains("Buscar")) // Condição para verificar se terá busca do usuário.
 			{
-				disciplinas = dControl.buscarAlunoDisciplina(ra);
-				MatriculaDisciplina md = new MatriculaDisciplina();
-				md = disciplinas.get(0).getUmMatriculaDisciplina();
-				matricula = md.getIdMatricula();
-				
+				aluno.setRa(ra);
+				HistoricoController hController = new HistoricoController();
+				aluno = hController.buscarCabeçalho(aluno);
+				aprovado = hController.buscarHistorico(aluno,aprovado);
 			}
 
 			
@@ -72,7 +74,10 @@ public class HistoricoServlet
 			model.addAttribute("saida", saida);
 			model.addAttribute("erro", erro);
 			model.addAttribute("ra", ra);
-			model.addAttribute("disciplinas", disciplinas);
+			model.addAttribute("aluno", aluno);
+			model.addAttribute("disciplinas", aprovado[0]);
+			model.addAttribute("medias", aprovado[1]);
+			model.addAttribute("faltas", aprovado[2]);
 		}
 		return new ModelAndView("historico");
 	}

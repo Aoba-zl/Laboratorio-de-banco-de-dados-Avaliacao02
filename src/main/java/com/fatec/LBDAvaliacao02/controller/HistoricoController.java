@@ -1,25 +1,22 @@
 package com.fatec.LBDAvaliacao02.controller;
 
+import java.sql.SQLException;
 import java.util.List;
-
 import com.fatec.LBDAvaliacao02.model.Aluno;
-import com.fatec.LBDAvaliacao02.model.Disciplina;
+import com.fatec.LBDAvaliacao02.persistence.AlunoDao;
+import com.fatec.LBDAvaliacao02.persistence.GenericDao;
 
 public class HistoricoController {
-	public List<Aluno> buscarCabeçalho() {
-		return null;
+	public Aluno buscarCabeçalho(Aluno aluno) throws ClassNotFoundException, SQLException {
+		GenericDao gDao = new GenericDao();
+		AlunoDao aDao = new AlunoDao(gDao);
+		return aDao.buscarCabeçalho(aluno);
 		
 	}
-	public Object[] buscarHistorico(){
-		return null;
-		
-	}
-	public List<String> buscarNota(){
-		return null;
-		
-	}
-	public List<String> buscarFalta(){
-		return null;
+	public List[] buscarHistorico(Aluno aluno, List[] aprovado) throws ClassNotFoundException, SQLException{
+		GenericDao gDao = new GenericDao();
+		AlunoDao aDao = new AlunoDao(gDao);
+		return aDao.buscarHistorico(aluno,aprovado);
 		
 	}
 }

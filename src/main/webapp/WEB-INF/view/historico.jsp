@@ -92,24 +92,18 @@
 									<th class="col" style="min-width: 120px;">Data da Matricula</th>
 									<th class="col">Pontuação do Vestibular</th>
 									<th class="col">Posição no Vestibular</th>
-									<th class="col" style="min-width: 130px">Status</th>
 								</tr>
 							</thead>
-							<tbody>
-								<c:if test="${not empty alunos}">
-									<c:forEach var="a" items="${alunos}">
-										<tr ref="${a.ra}">
-											<th scope="row"><c:out value="${a.ra}"/></th>
-											<td><c:out value="${a.nome}"/></td>
-											<td><c:out value="${a.matricula.codigoCurso}"/></td>
-											<td><c:out value="${a.matricula.anoIngresso}"/></td>
-											<td><c:out value="${a.vestibular.pontuacao}"/></td>
-											<td><c:out value="${a.vestibular.posicao}"/></td>
-											<td><c:out value="${a.matricula.status}"/></td>
+								<c:if test="${not empty aluno}">
+										<tr>
+											<td><c:out value="${aluno.ra}"/></td>
+											<td><c:out value="${aluno.nome}"/></td>
+											<td><c:out value="${aluno.matricula.curso.nome}"/></td>
+											<td><c:out value="${aluno.matricula.anoIngresso}"/></td>
+											<td><c:out value="${aluno.vestibular.pontuacao}"/></td>
+											<td><c:out value="${aluno.vestibular.posicao}"/></td>
 										</tr>
-									</c:forEach>
 								</c:if>
-							</tbody>
 						</table>
 					</div>
 				</div>
@@ -128,13 +122,12 @@
 							<tbody>
 								<c:if test="${not empty disciplinas}">
 									<c:forEach var="d" items="${disciplinas}">
-										<tr ref="${d.codigo}">
-											<th scope="row"><c:out value="${d.codigo}"/></th>
+										<tr>
+											<td> <c:out value="${d.codigo}"/></td>
 											<td><c:out value="${d.nome}"/> </td>
-											<td><c:out value="${professores.nome}"/></td>
-											<td><c:out value="${d.horarioInicio}"/></td>
-											<td><c:out value="${notas}"/></td>
-											<td><c:out value="${faltas}"/></td>
+											<td><c:out value="${d.professor.nome}"/></td>
+											<td><c:out value="${medias.get(0)}"/></td>
+											<td><c:out value="${faltas.get(0)}"/></td>
 										</tr>
 									</c:forEach>
 								</c:if>
