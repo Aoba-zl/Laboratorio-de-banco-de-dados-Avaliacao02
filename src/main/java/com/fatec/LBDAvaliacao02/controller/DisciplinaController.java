@@ -57,6 +57,15 @@ public class DisciplinaController
 		return disciplinas;
 	}
 	
+	public List<Disciplina> listarDisciplinaCurso(int codigo) throws SQLException, ClassNotFoundException 
+	{
+		GenericDao gDao = new GenericDao();
+		DisciplinaDao dDao = new DisciplinaDao(gDao);
+		List<Disciplina> disciplinas = dDao.listarDisciplinaCurso(codigo);
+		
+		return disciplinas;
+	}
+	
 	/**
 	 * Método responsável para escolher as disciplinas obtidas através da checkbox.
 	 * 

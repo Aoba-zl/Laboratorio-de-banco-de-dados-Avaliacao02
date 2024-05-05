@@ -107,7 +107,7 @@
 										<tr ref="${d.diaAula}">
 											<td>
 												<div>
-													<input type="checkbox" class="form-check-input checkbox-disciplina" name="checkboxDisciplina" value="${d.codigo}" <c:if test="${emAndamento}">disabled</c:if>>
+													<input type="checkbox" class="form-check-input checkbox-disciplina" name="checkboxDisciplina" value="${d.codigo}" <c:if test="${emAndamento or d.umMatriculaDisciplina.status eq 'Dispensado.'}">disabled</c:if>>
 												</div>
 											</td>
 											<th scope="row"><c:out value="${d.nome}"/></th>

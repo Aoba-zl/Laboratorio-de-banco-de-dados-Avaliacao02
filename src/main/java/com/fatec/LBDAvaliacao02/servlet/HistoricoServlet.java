@@ -27,7 +27,7 @@ import com.fatec.LBDAvaliacao02.model.MatriculaDisciplina;
 public class HistoricoServlet
 {
 	@RequestMapping(name = "historico", value = "/historico", method = RequestMethod.GET)
-	public ModelAndView disciplinaGet(HttpServletRequest request, ModelMap model)
+	public ModelAndView historicoGet(HttpServletRequest request, ModelMap model)
 	{
 		HttpSession session = request.getSession();
 		session.invalidate(); // Invalida/limpa a sessão do usuário.
@@ -35,7 +35,7 @@ public class HistoricoServlet
 	}
 	
 	@RequestMapping(name = "historico", value = "/historico", method = RequestMethod.POST)
-	public ModelAndView disciplinaPost(@RequestParam Map<String, String> allRequestParam, HttpServletRequest request, ModelMap model)
+	public ModelAndView historicoPost(@RequestParam Map<String, String> allRequestParam, HttpServletRequest request, ModelMap model)
 	{
 		//entrada
 		HttpSession session = request.getSession();
