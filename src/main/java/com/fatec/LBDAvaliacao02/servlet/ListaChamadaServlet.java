@@ -21,8 +21,9 @@ import com.fatec.LBDAvaliacao02.model.Curso;
 @Controller
 public class ListaChamadaServlet
 {
-	//@RequestMapping(name = "lista-chamada", value = "/lista-chamada", method = RequestMethod.GET)
-	public ModelAndView cursoGet(ModelMap model)
+	@RequestMapping(name = "lista-chamada", value = "/lista-chamada", method = RequestMethod.GET)
+	public ModelAndView listaChamadaGet(ModelMap model)
+
 	{
 		List<Curso> cursos = new ArrayList<>();
 		CursoController cControl = new CursoController();
@@ -41,8 +42,8 @@ public class ListaChamadaServlet
 		return new ModelAndView("lista-chamada");
 	}
 
-	//@RequestMapping(name = "lista-chamada", value = "/lista-chamada", method = RequestMethod.POST)
-	public ModelAndView cursoPost(@RequestParam Map<String, String> allRequestParam, ModelMap model)
+	@RequestMapping(name = "lista-chamada", value = "/lista-chamada", method = RequestMethod.POST)
+	public ModelAndView listaChamadaPost(@RequestParam Map<String, String> allRequestParam, ModelMap model)
 	{
 		return new ModelAndView("lista-chamada");
 	}

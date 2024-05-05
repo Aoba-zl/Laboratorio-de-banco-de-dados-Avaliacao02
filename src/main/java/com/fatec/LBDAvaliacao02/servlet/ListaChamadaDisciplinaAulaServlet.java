@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,8 +22,8 @@ import com.fatec.LBDAvaliacao02.model.Curso;
 @Controller
 public class ListaChamadaDisciplinaAulaServlet
 {
-	@RequestMapping(name = "lista-chamada", value = "/lista-chamada", method = RequestMethod.GET)
-	public ModelAndView cursoGet(ModelMap model)
+	@RequestMapping(name = "lista-chamada-disciplina-aula", value = "/lista-chamada/{codigo}/{codigoDisciplina}", method = RequestMethod.GET)
+	public ModelAndView listaChamadaDisciplinaAulaGet(@PathVariable("codigoDisciplina") int codigoDisciplina, ModelMap model)
 	{
 		List<Curso> cursos = new ArrayList<>();
 		CursoController cControl = new CursoController();
@@ -38,12 +39,12 @@ public class ListaChamadaDisciplinaAulaServlet
 			model.addAttribute("cursos", cursos);
 		}
 		
-		return new ModelAndView("lista-chamada");
+		return new ModelAndView("lista-chamada-disciplina-aula");
 	}
 
-	@RequestMapping(name = "lista-chamada", value = "/lista-chamada", method = RequestMethod.POST)
-	public ModelAndView cursoPost(@RequestParam Map<String, String> allRequestParam, ModelMap model)
+	@RequestMapping(name = "lista-chamada-disciplina-aula", value = "/lista-chamada/{codigo}/{codigoDisciplina}", method = RequestMethod.POST)
+	public ModelAndView listaChamadaDisciplinaAulaPost(@PathVariable("codigoDisciplina") int codigoDisciplina, ModelMap model)
 	{
-		return new ModelAndView("lista-chamada");
+		return new ModelAndView("lista-chamada-disciplina-aula");
 	}
 }

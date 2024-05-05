@@ -28,7 +28,7 @@ import com.fatec.LBDAvaliacao02.model.MatriculaDisciplina;
 public class DisciplinaDispensadoServlet
 {
 	@RequestMapping(name = "disciplina-dispensado", value = "/disciplina-dispensado", method = RequestMethod.GET)
-	public ModelAndView disciplinaGet(HttpServletRequest request, ModelMap model)
+	public ModelAndView disciplinaDispensadoGet(HttpServletRequest request, ModelMap model)
 	{
 		HttpSession session = request.getSession();
 		session.invalidate(); // Invalida/limpa a sessão do usuário.
@@ -36,7 +36,7 @@ public class DisciplinaDispensadoServlet
 	}
 	
 	@RequestMapping(name = "disciplina-dispensado", value = "/disciplina-dispensado", method = RequestMethod.POST)
-	public ModelAndView disciplinaPost(@RequestParam Map<String, String> allRequestParam, HttpServletRequest request, ModelMap model)
+	public ModelAndView disciplinaDispensadoPost(@RequestParam Map<String, String> allRequestParam, HttpServletRequest request, ModelMap model)
 	{
 		//entrada
 		String cmd = allRequestParam.get("botao"); // Obtém o valor do botão.

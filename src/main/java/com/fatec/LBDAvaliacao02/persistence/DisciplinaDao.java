@@ -176,6 +176,36 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		
 		return disciplinas;
 	}
+	
+	public List<Disciplina> listarDisciplinaCurso(int codigo) throws SQLException, ClassNotFoundException
+	{
+		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+		Connection c = gDao.getConnection();
+		String sql = """
+				SELECT d.codigo, d.nome AS nome_disciplina 
+				FROM disciplina d, curso c 
+				WHERE d.codigo_curso = c.codigo 
+					AND c.codigo = ?
+				""";
+		PreparedStatement ps = c.prepareStatement(sql);
+		ps.setInt(1, codigo);
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next())
+		{
+			Disciplina d = new Disciplina();
+			d.setCodigo(rs.getInt("codigo"));
+			d.setNome(rs.getString("nome_disciplina"));
+			
+			disciplinas.add(d);
+		}
+		
+		rs.close();
+		ps.close();
+		c.close();
+		
+		return disciplinas;
+	}
 
 	/**
 	 * Método responsável por atualizar as disciplinas escolhidas pelo usuários, colocando-os com "Em andamento." nos status da tabela do banco de dados.
@@ -234,5 +264,7 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		return "Disciplina dispensada";
 		
 	}
+
+	
 
 }

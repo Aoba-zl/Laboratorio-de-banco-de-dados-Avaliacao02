@@ -52,24 +52,18 @@
 					<h2 class="text-center"><b><c:out value="${saida}"/></b></h2>
 				</c:if>
 			</div>
-			<div class="form-container m-auto border border-primary rounded-4" style="max-width: 650px;">
+			<div class="form-container m-auto border border-primary rounded-4" style="max-width: 450px;">
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th class="col">Nome</th>
-							<th class="col">Carga Horaria</th>
-							<th class="col">Sigla</th>
-							<th class="col">Nota do ENADE</th>
+							<th class="col">Nome do Curso</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:if test="${not empty cursos}">
 							<c:forEach var="cr" items="${cursos}">
 								<tr>
-									<th scope="row"><c:out value="${cr.nome}"/></th>
-									<td><c:out value="${cr.cargaHoraria}"/></td>
-									<td><c:out value="${cr.sigla}"/></td>
-									<td><c:out value="${cr.notaEnade}"/></td>
+									<td><button class="btn btn-outline-primary text-start container" OnClick="window.location.href='./lista-chamada/<c:out value="${cr.codigo}"></c:out>'"><c:out value="${cr.nome}"/></button></td>
 								</tr>
 							</c:forEach>
 						</c:if>
