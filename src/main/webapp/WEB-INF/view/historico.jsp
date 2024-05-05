@@ -121,13 +121,14 @@
 							</thead>
 							<tbody>
 								<c:if test="${not empty disciplinas}">
-									<c:forEach var="d" items="${disciplinas}">
+									<c:forEach var="d" items="${disciplinas}" varStatus="loop">
 										<tr>
+											<td> <c:out value="${d.codigo}"/></td>
 											<td> <c:out value="${d.codigo}"/></td>
 											<td><c:out value="${d.nome}"/> </td>
 											<td><c:out value="${d.professor.nome}"/></td>
-											<td><c:out value="${medias.get(0)}"/></td>
-											<td><c:out value="${faltas.get(0)}"/></td>
+											<td><c:out value="${medias.get(loop.index)}"/></td>
+											<td><c:out value="${faltas.get(loop.index)}"/></td>
 										</tr>
 									</c:forEach>
 								</c:if>
