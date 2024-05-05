@@ -124,7 +124,6 @@
 									<c:forEach var="d" items="${disciplinas}" varStatus="loop">
 										<tr>
 											<td> <c:out value="${d.codigo}"/></td>
-											<td> <c:out value="${d.codigo}"/></td>
 											<td><c:out value="${d.nome}"/> </td>
 											<td><c:out value="${d.professor.nome}"/></td>
 											<td><c:out value="${medias.get(loop.index)}"/></td>
