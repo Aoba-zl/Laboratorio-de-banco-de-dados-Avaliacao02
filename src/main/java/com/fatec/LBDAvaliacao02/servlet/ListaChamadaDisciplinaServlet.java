@@ -26,6 +26,7 @@ public class ListaChamadaDisciplinaServlet
 {
 	@RequestMapping(name = "lista-chamada-disciplina", value = "/lista-chamada/{codigo}", method = RequestMethod.GET)
 	public ModelAndView listaChamadaDisciplinaGet(@PathVariable("codigo") int codigo, ModelMap model)
+
 	{
 		List<Disciplina> disciplinas = new ArrayList<>();
 		DisciplinaController dControl = new DisciplinaController();
@@ -45,6 +46,7 @@ public class ListaChamadaDisciplinaServlet
 		
 		return new ModelAndView("lista-chamada-disciplina");
 	}
+
 
 	@RequestMapping(name = "lista-chamada-disciplina", value = "/lista-chamada/{codigo}", method = RequestMethod.POST)
 	public ModelAndView listaChamadaDisciplinaPost(@PathVariable("codigo") long codigo, ModelMap model)

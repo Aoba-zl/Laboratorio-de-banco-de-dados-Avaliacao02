@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fatec.LBDAvaliacao02.controller.DisciplinaController;
+import com.fatec.LBDAvaliacao02.controller.HistoricoController;
+import com.fatec.LBDAvaliacao02.model.Aluno;
 import com.fatec.LBDAvaliacao02.model.Disciplina;
 import com.fatec.LBDAvaliacao02.model.MatriculaDisciplina;
 
@@ -38,11 +40,10 @@ public class HistoricoServlet
 	public ModelAndView historicoPost(@RequestParam Map<String, String> allRequestParam, HttpServletRequest request, ModelMap model)
 	{
 		//entrada
-		HttpSession session = request.getSession();
 		String cmd = allRequestParam.get("botao"); // Obtém o valor do botão.
-		String ra = allRequestParam.get("ra"); // Obtém o valor do ra.
-		String[] cod = request.getParameterValues("checkboxDisciplina"); // Obtém a array de código das checkbox selecionadas.
-		String matricula = ""; // String matricula iniciada para a obtenção do valor depois.
+		String ra = allRequestParam.get("ra").trim(); // Obtém o valor do ra.
+		List[] aprovado = new ArrayList[3];
+		Aluno aluno = new Aluno();
 		List<Disciplina> disciplinas = new ArrayList<>();
 		
 		
@@ -55,53 +56,17 @@ public class HistoricoServlet
 			if(dControl.validar(ra)) // Verifica se o campo ra não está em branco.
 			{
 				saida = "Ra em branco!";
-				return new ModelAndView("disciplina");
+				return new ModelAndView("historico");
 			}
 			
-			if(cmd.contains("Buscar")) // Condição para verificar se terá busca do usuário.
+			if(cmd.contains("Buscar")) // Condição para verificar se terá busca do usuá	rio.
 			{
-				disciplinas = dControl.buscarAlunoDisciplina(ra);
-				MatriculaDisciplina md = new MatriculaDisciplina();
-				md = disciplinas.get(0).getUmMatriculaDisciplina();
-				matricula = md.getIdMatricula();
-				
-				session.setAttribute("disciplinas", disciplinas); // Guarda a lista de disciplina na sessão.
-				session.setAttribute("matricula", matricula); // Guarda a String da matricula na sessão.
+				aluno.setRa(ra);
+				HistoricoController hController = new HistoricoController();
+				aluno = hController.buscarCabeçalho(aluno);
+				aprovado = hController.buscarHistorico(aluno,aprovado);
 			}
-			if(cmd.contains("escolherDisciplina")) // Condição para verificar se terá escolha de disciplina do usuário.
-			{
-				if(!(cod == null))
-				{
-					matricula = (String) session.getAttribute("matricula"); // Recebe a String de matricula da sessão.
-					disciplinas = (List<Disciplina>) session.getAttribute("disciplinas"); // Recebe a lista de disciplina da sessão.
-					
-					if(dControl.verificaHorario(disciplinas, cod)) // Verifica se o horário tem conflito com outro horário.
-					{
-						saida = "Há algum conflito de horário!";
-						return new ModelAndView("disciplina");
-					}
-					
-					
-					List<MatriculaDisciplina> mdList = new ArrayList<MatriculaDisciplina>();
-					for(String c : cod) // ForEach do código para criar MatriculaDisciplina com seus devidos valores.
-					{
-						MatriculaDisciplina md = new MatriculaDisciplina();
-						md.setCodigoDisciplina(c);
-						md.setIdMatricula(matricula);
-						md.setStatus("Em andamento.");
-						
-						mdList.add(md);
-					}
-					
-					saida = dControl.escolheDisciplina(mdList); // Manda a lista de MatriculaDisciplina e retorna uma resposta para a saida.
-					
-					disciplinas = dControl.buscarAlunoDisciplina(ra); // Obtém a nova lista de disciplinas atualizada.
-				}
-				else
-				{
-					saida = "Selecione as caixa das disciplinas que queira fazer!";
-				}
-			}
+
 			
 		} catch (SQLException | ClassNotFoundException e)
 		{
@@ -111,7 +76,10 @@ public class HistoricoServlet
 			model.addAttribute("saida", saida);
 			model.addAttribute("erro", erro);
 			model.addAttribute("ra", ra);
-			model.addAttribute("disciplinas", disciplinas);
+			model.addAttribute("aluno", aluno);
+			model.addAttribute("disciplinas", aprovado[0]);
+			model.addAttribute("medias", aprovado[1]);
+			model.addAttribute("faltas", aprovado[2]);
 		}
 		return new ModelAndView("historico");
 	}

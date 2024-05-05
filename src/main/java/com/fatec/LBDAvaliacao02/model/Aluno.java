@@ -27,6 +27,7 @@ public class Aluno
 	private String emailCorporativo;
 	private LocalDate dtConclusaoSegGrau;
 	private String instituicaoConclusaoSegGrau;
+	private Matricula matricula = new Matricula();
 	private List<Telefone> telefone = new ArrayList<>();
 	private Vestibular vestibular = new Vestibular();
 	

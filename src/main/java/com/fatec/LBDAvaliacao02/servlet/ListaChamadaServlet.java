@@ -23,6 +23,7 @@ public class ListaChamadaServlet
 {
 	@RequestMapping(name = "lista-chamada", value = "/lista-chamada", method = RequestMethod.GET)
 	public ModelAndView listaChamadaGet(ModelMap model)
+
 	{
 		List<Curso> cursos = new ArrayList<>();
 		CursoController cControl = new CursoController();
