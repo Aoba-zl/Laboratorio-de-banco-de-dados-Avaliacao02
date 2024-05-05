@@ -19,11 +19,11 @@ public class Matricula
 {
 	private int id;
 	private String raAluno;
-	private int codigoCurso;
+	private Curso curso;
 	private String semestre;
 	private String semestreIngresso;
 	private LocalDate anoLimiteGraduacao;
-	private LocalDate anoIngresso;
+	private int anoIngresso;
 	private List<MatriculaDisciplina> md;
 	private String status;
 	private List<Aula> aulas;
