@@ -30,6 +30,8 @@ public class DisciplinaDispensadoServlet
 	@RequestMapping(name = "disciplina-dispensado", value = "/disciplina-dispensado", method = RequestMethod.GET)
 	public ModelAndView disciplinaGet(HttpServletRequest request, ModelMap model)
 	{
+		HttpSession session = request.getSession();
+		session.invalidate(); // Invalida/limpa a sessão do usuário.
 		return new ModelAndView("disciplina-dispensado");
 	}
 	

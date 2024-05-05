@@ -31,6 +31,8 @@ public class HistoricoServlet
 	@RequestMapping(name = "historico", value = "/historico", method = RequestMethod.GET)
 	public ModelAndView historicoGet(HttpServletRequest request, ModelMap model)
 	{
+		HttpSession session = request.getSession();
+		session.invalidate(); // Invalida/limpa a sessão do usuário.
 		return new ModelAndView("historico");
 	}
 	
@@ -57,7 +59,7 @@ public class HistoricoServlet
 				return new ModelAndView("historico");
 			}
 			
-			if(cmd.contains("Buscar")) // Condição para verificar se terá busca do usuário.
+			if(cmd.contains("Buscar")) // Condição para verificar se terá busca do usuá	rio.
 			{
 				aluno.setRa(ra);
 				HistoricoController hController = new HistoricoController();
