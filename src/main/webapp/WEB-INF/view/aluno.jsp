@@ -156,7 +156,7 @@
 					<div class="d-flex">
 						<button class="btn btn-success me-3" name="botao" value="Cadastrar">Cadastrar</button>
 						<button class="btn btn-primary me-3" name="botao" value="Alterar">Alterar</button>
-						<button class="btn btn-danger ms-auto" name="botao" value="Excluir">Excluir</button>
+						<button class="btn btn-danger ms-auto" name="botao" value="Trancar">Trancar</button>
 					</div>
 				</form>
 			</main>

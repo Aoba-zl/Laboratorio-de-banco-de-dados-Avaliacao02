@@ -78,7 +78,7 @@ public class AlunoServlet
 		List<Curso> cursos = new ArrayList<>();
 		Curso curso = new Curso();
 		
-		if (cmd.contains("Buscar") || cmd.contains("Alterar") || cmd.contains("Excluir")) {
+		if (cmd.contains("Buscar") || cmd.contains("Alterar") || cmd.contains("Trancar")) {
 			aluno.setRa(ra);
 		}
 		if (cmd.contains("Cadastrar")|| cmd.contains("Alterar")) {
@@ -132,10 +132,10 @@ public class AlunoServlet
 					aluno = null;
 				}
 			}
-			if (cmd.contains("Excluir")) {
+			if (cmd.contains("Trancar")) {
 				saida = alunoController.excluir(aluno);
 				//saida = "Aluno Excluido";
-				if (saida.contains("Aluno excluído!")) {
+				if (saida.contains("Matricula trancada!")) {
 					aluno = null;
 				}
 			}
@@ -159,7 +159,7 @@ public class AlunoServlet
 			model.addAttribute("aluno",aluno);
 			model.addAttribute("alunos",alunos);
 			model.addAttribute("cursos",cursos);
-			if (cmd.contains("Buscar") && aluno.getTelefone() != null) {
+			if (cmd.contains("Buscar") && aluno.getTelefone().size() != 0) {
 				model.addAttribute("telefones",aluno.getTelefone());
 			}
 		}
