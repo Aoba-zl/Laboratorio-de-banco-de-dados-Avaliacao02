@@ -27,7 +27,6 @@ public class Disciplina
 	private List<Conteudo> conteudo = new ArrayList<>();
 	private List<MatriculaDisciplina> matriculaDisciplina;
 	private Professor professor;
-	private List<Aula> aulas;
 	
 	public void setUmMatriculaDisciplina (MatriculaDisciplina md)
 	{
