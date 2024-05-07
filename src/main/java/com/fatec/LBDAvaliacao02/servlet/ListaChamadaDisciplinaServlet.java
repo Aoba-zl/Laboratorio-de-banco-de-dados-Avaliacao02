@@ -32,8 +32,6 @@ public class ListaChamadaDisciplinaServlet
 		DisciplinaController dControl = new DisciplinaController();
 		String erro = "";
 		
-		System.out.println(codigo);
-		
 		try {			
 			disciplinas = dControl.listarDisciplinaCurso(codigo);
 		} catch(SQLException | ClassNotFoundException e) {

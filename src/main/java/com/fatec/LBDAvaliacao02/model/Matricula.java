@@ -18,7 +18,7 @@ import lombok.ToString;
 public class Matricula 
 {
 	private int id;
-	private String raAluno;
+	private Aluno aluno;
 	private Curso curso;
 	private String semestre;
 	private String semestreIngresso;
@@ -26,5 +26,5 @@ public class Matricula
 	private int anoIngresso;
 	private List<MatriculaDisciplina> md;
 	private String status;
-	private List<Aula> aulas;
+	private List<Aula> aula;
 }

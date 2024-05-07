@@ -17,7 +17,7 @@
 
 <link rel="stylesheet" type="text/css" href="/LBDAvaliacao02/resources/css/style.css">
 
-<title>Curso</title>
+<title>Aula</title>
 </head>
 <body>
 	<div class="bg-black custom">
@@ -52,30 +52,41 @@
 					<h2 class="text-center"><b><c:out value="${saida}"/></b></h2>
 				</c:if>
 			</div>
-			<div class="form-container m-auto border border-primary rounded-4" style="max-width: 650px;">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th class="col">Nome</th>
-							<th class="col">Carga Horaria</th>
-							<th class="col">Sigla</th>
-							<th class="col">Nota do ENADE</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:if test="${not empty cursos}">
-							<c:forEach var="cr" items="${cursos}">
-								<tr>
-									<th scope="row"><c:out value="${cr.nome}"/></th>
-									<td><c:out value="${cr.cargaHoraria}"/></td>
-									<td><c:out value="${cr.sigla}"/></td>
-									<td><c:out value="${cr.notaEnade}"/></td>
-								</tr>
-							</c:forEach>
-						</c:if>
-					</tbody>
-				</table>
-			</div>
+			<form action="${codigoDisciplinaConteudo}" method="post">
+				<div class="form-container m-auto border border-primary rounded-4" style="max-width: 650px;">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th class="col">Selecionar Presença</th>
+								<th class="col">RA</th>
+								<th class="col">Nome do aluno</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:if test="${not empty aula.presenca}">
+								<c:forEach var="p" items="${aula.presenca}">
+									<tr>
+										<td>
+											<div class="d-flex">
+												<c:forEach var="i" begin="1" end="${p.id}">
+													<div class="me-2">
+														<input type="checkbox" class="form-check-input checkbox-disciplina" name="checkboxAulaAluno" value="${i}-${p.matricula.aluno.ra}">
+													</div>
+												</c:forEach>
+											</div>
+										</td>
+										<td><c:out value="${p.matricula.aluno.ra}"/></td>
+										<td scope="row"><c:out value="${p.matricula.aluno.nome}"/></td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</tbody>
+					</table>
+					<div class="form-container m-auto d-flex" style="max-width: 900px;">
+						<button class="btn btn-success ms-auto" name="botao" value="confirmarChamada">Confirmar</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </body>

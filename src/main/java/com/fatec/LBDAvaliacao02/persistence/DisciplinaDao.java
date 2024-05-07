@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.fatec.LBDAvaliacao02.model.Aluno;
+import com.fatec.LBDAvaliacao02.model.Conteudo;
 import com.fatec.LBDAvaliacao02.model.Disciplina;
 import com.fatec.LBDAvaliacao02.model.MatriculaDisciplina;
 
@@ -207,6 +208,36 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		return disciplinas;
 	}
 
+	public Disciplina listarDisciplinaConteudo(int codigoDisciplina) throws SQLException, ClassNotFoundException
+	{
+		Disciplina disciplina = new Disciplina();
+		List<Conteudo> conteudos = new ArrayList<>();
+		Connection c = gDao.getConnection();
+		String sql = "SELECT id, codigo_disciplina, nome, descricao FROM fn_disciplina_conteudo(?)";
+		PreparedStatement ps = c.prepareStatement(sql);
+		ps.setInt(1, codigoDisciplina);
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next())
+		{
+			Conteudo conteudo = new Conteudo();
+			conteudo.setId(rs.getInt("id"));
+			conteudo.setCodigoDisciplina(rs.getInt("codigo_disciplina"));
+			conteudo.setNome(rs.getString("nome"));
+			conteudo.setDescricao(rs.getString("descricao"));
+			
+			conteudos.add(conteudo);
+		}
+		
+		disciplina.setConteudo(conteudos);
+		
+		rs.close();
+		ps.close();
+		c.close();
+		
+		return disciplina;
+	}
+	
 	/**
 	 * Método responsável por atualizar as disciplinas escolhidas pelo usuários, colocando-os com "Em andamento." nos status da tabela do banco de dados.
 	 * 
@@ -264,6 +295,7 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		return "Disciplina dispensada";
 		
 	}
+
 
 	
 

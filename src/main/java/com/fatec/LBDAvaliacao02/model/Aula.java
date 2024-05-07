@@ -16,9 +16,8 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Aula 
 {
-	private int id;
 	private Matricula matricula;
-	private Disciplina disciplina;
+	private Conteudo conteudo;
 	private LocalDate dia;
-	private List<Presenca> presencas;
+	private List<Presenca> presenca;
 }

@@ -14,6 +14,7 @@ import lombok.ToString;
 public class Presenca 
 {
 	private int id;
-	private int idAula;
+	private Matricula matricula;
+	private Conteudo conteudo;
 	private boolean status;
 }
