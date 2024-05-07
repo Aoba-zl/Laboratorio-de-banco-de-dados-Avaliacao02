@@ -17,7 +17,7 @@
 
 <link rel="stylesheet" type="text/css" href="/LBDAvaliacao02/resources/css/style.css">
 
-<title>Curso</title>
+<title>Disciplina</title>
 </head>
 <body>
 	<div class="bg-black custom">

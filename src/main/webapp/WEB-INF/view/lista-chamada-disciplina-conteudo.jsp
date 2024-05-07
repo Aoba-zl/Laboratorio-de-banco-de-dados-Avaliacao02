@@ -15,9 +15,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" type="text/css" href='<c:url value="./resources/css/style.css"/>'>
+<link rel="stylesheet" type="text/css" href="/LBDAvaliacao02/resources/css/style.css">
 
-<title>Lista de Chamada</title>
+<title>Conteudo</title>
 </head>
 <body>
 	<div class="bg-black custom">
@@ -27,16 +27,16 @@
 					<div class="m-auto">
 						<div class="row">
 							<div class="col-auto p-0 text-center" style="width: 160px;">
-								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='./'">home</button>
+								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='/LBDAvaliacao02/'">home</button>
 							</div>
 							<div class="col-auto p-0 text-center" style="width: 160px;">
-								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='./aluno'">Pagina Aluno</button>
+								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='/LBDAvaliacao02/aluno'">Pagina Aluno</button>
 							</div>
 							<div class="col-auto p-0 text-center" style="width: 160px;">
-								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='./curso'">Ver Cursos</button>
+								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='/LBDAvaliacao02/curso'">Ver Cursos</button>
 							</div>
 							<div class="col-auto p-0 text-center" style="width: 160px;">
-								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='./lista-chamada'">Lista de chamada</button>
+								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='/LBDAvaliacao02/lista-chamada'">Lista de chamada</button>
 							</div>
 						</div>
 					</div>
@@ -52,18 +52,18 @@
 					<h2 class="text-center"><b><c:out value="${saida}"/></b></h2>
 				</c:if>
 			</div>
-			<div class="form-container m-auto border border-primary rounded-4" style="max-width: 450px;">
+			<div class="form-container m-auto border border-primary rounded-4" style="max-width: 650px;">
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th class="col">Nome do Curso</th>
+							<th class="col">Nome do Conteudo</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:if test="${not empty cursos}">
-							<c:forEach var="cr" items="${cursos}">
+						<c:if test="${not empty disciplina.conteudo}">
+							<c:forEach var="co" items="${disciplina.conteudo}">
 								<tr>
-									<td><button class="btn btn-outline-primary text-start container" OnClick="window.location.href='./lista-chamada/<c:out value="${cr.codigo}"></c:out>'"><c:out value="${cr.nome}"/></button></td>
+									<td><button class="btn btn-outline-primary text-start container" OnClick="window.location.href='./${codigoDisciplina}/<c:out value="${co.id}"></c:out>'"><c:out value="${co.nome}"/></button></td>
 								</tr>
 							</c:forEach>
 						</c:if>
