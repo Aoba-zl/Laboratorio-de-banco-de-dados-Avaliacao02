@@ -170,7 +170,6 @@ public class AlunoServlet
 	private LocalDate toLocalDate (String data) {
 		LocalDate localdate = LocalDate.parse(data);
 		return localdate;
-		
 	}
 	private List<Curso> getCursos (List<Curso> cursos) throws ClassNotFoundException, SQLException {
 		CursoController cursoController = new CursoController();

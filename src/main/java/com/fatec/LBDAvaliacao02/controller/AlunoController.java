@@ -15,6 +15,15 @@ import com.fatec.LBDAvaliacao02.persistence.GenericDao;
 @Controller
 public class AlunoController 
 {
+    /**
+     * Método para cadastrar um novo aluno.
+     *
+     * @param aluno O objeto Aluno a ser cadastrado.
+     * @param curso O curso ao qual o aluno está associado.
+     * @return Uma mensagem indicando se o cadastro foi bem-sucedido ou não.
+     * @throws SQLException            Se ocorrer um erro durante a operação SQL.
+     * @throws ClassNotFoundException Se a classe não for encontrada.
+     */
 	public String cadastrar (Aluno aluno,Curso curso) throws SQLException, ClassNotFoundException {
 		String saida = checkAluno(aluno,curso);
 		if (saida.contains("correto")) {
@@ -24,6 +33,15 @@ public class AlunoController
 		}
 		return saida;
 	}
+    /**
+     * Método para alterar informações de um aluno existente.
+     *
+     * @param aluno O objeto Aluno com as informações atualizadas.
+     * @param curso O curso ao qual o aluno está associado.
+     * @return Uma mensagem indicando se a alteração foi bem-sucedida ou não.
+     * @throws SQLException            Se ocorrer um erro durante a operação SQL.
+     * @throws ClassNotFoundException Se a classe não for encontrada.
+     */
 	public String alterar(Aluno aluno,Curso curso) throws SQLException, ClassNotFoundException {
 		String saida = checkAluno(aluno);
 		if (saida.contains("correto")) {
@@ -33,6 +51,15 @@ public class AlunoController
 		}
 		return saida;
 	}
+
+    /**
+     * Método para excluir um aluno.
+     *
+     * @param aluno O objeto Aluno a ser excluído.
+     * @return Uma mensagem indicando se a exclusão foi bem-sucedida ou não.
+     * @throws SQLException            Se ocorrer um erro durante a operação SQL.
+     * @throws ClassNotFoundException Se a classe não for encontrada.
+     */
 	public String excluir(Aluno aluno) throws SQLException, ClassNotFoundException {
 		String saida;
 		GenericDao gDao = new GenericDao();
@@ -45,12 +72,29 @@ public class AlunoController
 		saida = aDao.iud("D", aluno,curso);
 		return saida;
 	}
+
+    /**
+     * Método para buscar um aluno pelo CPF.
+     *
+     * @param aluno O objeto Aluno com o CPF a ser buscado.
+     * @return O objeto Aluno encontrado ou null se não for encontrado.
+     * @throws SQLException            Se ocorrer um erro durante a operação SQL.
+     * @throws ClassNotFoundException Se a classe não for encontrada.
+     */
 	public Aluno buscar(Aluno aluno) throws SQLException, ClassNotFoundException {
 		GenericDao gDao = new GenericDao();
 		AlunoDao aDao = new AlunoDao(gDao);
 		aluno = aDao.consultar(aluno);
 		return aluno;
 	}
+    /**
+     * Método para listar todos os alunos cadastrados.
+     *
+     * @param alunos Uma lista de alunos para serem preenchidos com os dados.
+     * @return Uma lista contendo todos os alunos cadastrados.
+     * @throws SQLException            Se ocorrer um erro durante a operação SQL.
+     * @throws ClassNotFoundException Se a classe não for encontrada.
+     */
 	public List<Aluno> listar(List<Aluno> alunos) throws SQLException, ClassNotFoundException {
 		GenericDao gDao = new GenericDao();
 		AlunoDao aDao = new AlunoDao(gDao);
