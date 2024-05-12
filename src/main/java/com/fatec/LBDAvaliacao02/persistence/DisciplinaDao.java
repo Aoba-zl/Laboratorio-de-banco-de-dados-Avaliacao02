@@ -283,6 +283,16 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		return saida;
 		
 	}
+	
+	/**
+	 * Dispensa uma disciplina para um aluno.
+	 *
+	 * @param ra         O RA do aluno.
+	 * @param disciplina O código da disciplina a ser dispensada.
+	 * @return Uma mensagem indicando se a dispensa da disciplina foi bem-sucedida ou não.
+	 * @throws ClassNotFoundException Se a classe não for encontrada.
+	 * @throws SQLException            Se ocorrer um erro durante a operação SQL.
+	 */
 	public String dispensarDisciplina(String ra, int disciplina) throws ClassNotFoundException, SQLException {
 		Connection connection = gDao.getConnection();
 		String querySql;
