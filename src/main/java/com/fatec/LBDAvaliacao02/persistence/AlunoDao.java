@@ -26,11 +26,24 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudIud<Aluno,Curso>
 {
 	private GenericDao gDao;
 	
+    /**
+     * Construtor que recebe um objeto GenericDao como parâmetro.
+     *
+     * @param gDao O objeto GenericDao a ser utilizado para operações de acesso a dados.
+     */
 	public AlunoDao(GenericDao gDao)
 	{	
 		this.gDao = gDao;
 	}
 	
+    /**
+     * Consulta informações de um aluno.
+     *
+     * @param a O objeto Aluno a ser consultado.
+     * @return O objeto Aluno com as informações consultadas.
+     * @throws SQLException            Se ocorrer um erro durante a operação SQL.
+     * @throws ClassNotFoundException Se a classe não for encontrada.
+     */
 	@Override
 	public Aluno consultar(Aluno a) throws SQLException, ClassNotFoundException 
 	{
@@ -90,6 +103,13 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudIud<Aluno,Curso>
 		return a;
 	}
 
+    /**
+     * Lista todos os alunos.
+     *
+     * @return Uma lista de objetos Aluno contendo as informações de todos os alunos.
+     * @throws SQLException            Se ocorrer um erro durante a operação SQL.
+     * @throws ClassNotFoundException Se a classe não for encontrada.
+     */
 	@Override
 	public List<Aluno> listar() throws SQLException, ClassNotFoundException 
 	{
@@ -130,6 +150,16 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudIud<Aluno,Curso>
 		return alunos;
 	}
 
+    /**
+     * Realiza a inserção, atualização ou exclusão de um aluno.
+     *
+     * @param acao  A ação a ser realizada: "I" para inserção, "U" para atualização ou "D" para exclusão.
+     * @param aluno O objeto Aluno a ser manipulado.
+     * @param curso O objeto Curso relacionado ao aluno.
+     * @return Uma mensagem indicando o resultado da operação.
+     * @throws SQLException            Se ocorrer um erro durante a operação SQL.
+     * @throws ClassNotFoundException Se a classe não for encontrada.
+     */
 	@Override
 	public String iud(String acao, Aluno aluno, Curso curso) throws SQLException, ClassNotFoundException 
 	{
@@ -232,6 +262,15 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudIud<Aluno,Curso>
             }
         }
 	}
+	
+    /**
+     * Busca informações do cabeçalho de um aluno.
+     *
+     * @param aluno O objeto Aluno a ser consultado.
+     * @return O objeto Aluno com as informações do cabeçalho.
+     * @throws SQLException            Se ocorrer um erro durante a operação SQL.
+     * @throws ClassNotFoundException Se a classe não for encontrada.
+     */
 	public Aluno buscarCabeçalho(Aluno aluno) throws ClassNotFoundException, SQLException {
 		Connection connection = gDao.getConnection();
 		String querySql = "EXEC sp_cabecalho ?";
@@ -251,6 +290,19 @@ public class AlunoDao implements ICrudDao<Aluno>, ICrudIud<Aluno,Curso>
 		return aluno;
 		
 	}
+	
+    /**
+     * Busca o histórico de um aluno.
+     *
+     * @param aluno    O objeto Aluno a ser consultado.
+     * @param aprovado Um array de Listas contendo as informações do histórico.
+     *                 Na posição 0: Lista de Disciplinas aprovadas.
+     *                 Na posição 1: Lista de médias obtidas pelo aluno.
+     *                 Na posição 2: Lista de faltas do aluno.
+     * @return Um array de Listas contendo as informações do histórico.
+     * @throws SQLException            Se ocorrer um erro durante a operação SQL.
+     * @throws ClassNotFoundException Se a classe não for encontrada.
+     */
 	public List[] buscarHistorico(Aluno aluno, List[] aprovado) throws ClassNotFoundException, SQLException {
 		List<Disciplina> disciplinas = new ArrayList<>();
 		List<String> medias = new ArrayList<>();
