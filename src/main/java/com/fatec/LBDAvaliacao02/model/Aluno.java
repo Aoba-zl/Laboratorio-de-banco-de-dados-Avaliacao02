@@ -31,12 +31,21 @@ public class Aluno
 	private List<Telefone> telefone = new ArrayList<>();
 	private Vestibular vestibular = new Vestibular();
 	
+	/**
+	 * Obtém a data de nascimento formatada como uma string.
+	 *
+	 * @return A data de nascimento formatada no formato "dd/MM/yyyy".
+	 */
 	public String getDtNascimentoFormat()
     {
         DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return this.dtNascimento.format(formatacao);
     }
-
+	/**
+	 * Obtém a data de conclusão do segundo grau formatada como uma string.
+	 *
+	 * @return A data de conclusão do segundo grau formatada no formato "dd/MM/yyyy".
+	 */
     public String getDtConclusaoSegGrauFormat()
     {
         DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
