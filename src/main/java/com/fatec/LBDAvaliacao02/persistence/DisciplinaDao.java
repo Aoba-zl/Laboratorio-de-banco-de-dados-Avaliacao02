@@ -101,6 +101,14 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		return disciplinas;
 	}
 	
+	/**
+	 * Método responsável por consultar um objeto do tipo Disciplina.
+	 * 
+	 * @param d contendo o objeto de Disciplina
+	 * @return Um objeto do tipo Disciplina
+	 * @throws SQLException Exceção lançada se houver problema com SQL
+	 * @throws ClassNotFoundException Exceção lançada se houver erro ao tentar encontrar a classe
+	 */
 	@Override
 	public Disciplina consultar(Disciplina d) throws SQLException, ClassNotFoundException //não feito por ser apenas crud do aluno
 	{
@@ -127,7 +135,14 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		
 		return d;
 	}
-
+	
+	/**
+	 * Método responsável por listar objetos do tipo Disciplina.
+	 * 
+	 * @return Uma lista de objeto do tipo Disciplina
+	 * @throws SQLException Exceção lançada se houver problema com SQL
+	 * @throws ClassNotFoundException Exceção lançada se houver erro ao tentar encontrar a classe
+	 */
 	@Override
 	public List<Disciplina> listar() throws SQLException, ClassNotFoundException //Não utilizado por não ser necessário, há coisas a ser atualizada
 	{
@@ -178,6 +193,14 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		return disciplinas;
 	}
 	
+	/**
+	 * Método responsável por listar objetos do tipo Disciplina que contém o código do curso.
+	 * 
+	 * @param codigo contendo o codigo do curso
+	 * @return Um objeto do tipo Disciplina
+	 * @throws SQLException Exceção lançada se houver problema com SQL
+	 * @throws ClassNotFoundException Exceção lançada se houver erro ao tentar encontrar a classe
+	 */
 	public List<Disciplina> listarDisciplinaCurso(int codigo) throws SQLException, ClassNotFoundException
 	{
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
@@ -208,6 +231,14 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		return disciplinas;
 	}
 
+	/**
+	 * Método responsável por consultar um objeto do tipo Disciplina que contém uma lista de conteudo.
+	 * 
+	 * @param codigoDisciplina contendo o codigo da Disciplina
+	 * @return Um objeto do tipo Disciplina
+	 * @throws SQLException Exceção lançada se houver problema com SQL
+	 * @throws ClassNotFoundException Exceção lançada se houver erro ao tentar encontrar a classe
+	 */
 	public Disciplina listarDisciplinaConteudo(int codigoDisciplina) throws SQLException, ClassNotFoundException
 	{
 		Disciplina disciplina = new Disciplina();
@@ -305,8 +336,4 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		return "Disciplina dispensada";
 		
 	}
-
-
-	
-
 }

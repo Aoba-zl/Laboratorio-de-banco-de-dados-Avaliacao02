@@ -57,6 +57,14 @@ public class DisciplinaController
 		return disciplinas;
 	}
 	
+	/**
+	 * Método responsável por criar uma lista de objeto do tipo disciplina de um curso específico.
+	 * 
+	 * @param codigo contendo o valor inteiro do código de um curso
+	 * @return Uma lista de objeto do tipo disciplina
+	 * @throws SQLException Exceção lançada se houver problema com SQL
+	 * @throws ClassNotFoundException Exceção lançada se houver erro ao tentar encontrar a classe
+	 */
 	public List<Disciplina> listarDisciplinaCurso(int codigo) throws SQLException, ClassNotFoundException 
 	{
 		GenericDao gDao = new GenericDao();
@@ -66,6 +74,14 @@ public class DisciplinaController
 		return disciplinas;
 	}
 	
+	/**
+	 * Método responsável por criar um objeto do tipo disciplina de contendo seus respectivos conteúdos.
+	 * 
+	 * @param codigoDisciplina contendo o valor inteiro do código de uma disciplina
+	 * @return Um objeto do tipo disciplina
+	 * @throws SQLException Exceção lançada se houver problema com SQL
+	 * @throws ClassNotFoundException Exceção lançada se houver erro ao tentar encontrar a classe
+	 */
 	public Disciplina listarDisciplinaConteudo(int codigoDisciplina) throws SQLException, ClassNotFoundException 
 	{
 		GenericDao gDao = new GenericDao();

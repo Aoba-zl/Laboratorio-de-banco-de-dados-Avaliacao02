@@ -26,6 +26,15 @@ public class AulaDao
 		this.gDao = gDao;
 	}
 	
+	
+	/**
+	 * Método responsável por criar um objeto do tipo Aula contendo o Objeto Aluno para mostrar a chamada.
+	 * 
+	 * @param idConteudo contendo o id de um conteudo
+	 * @return Um objeto do tipo Aula
+	 * @throws SQLException Exceção lançada se houver problema com SQL
+	 * @throws ClassNotFoundException Exceção lançada se houver erro ao tentar encontrar a classe
+	 */
 	public Aula listarAlunoAula(int idConteudo) throws SQLException, ClassNotFoundException
 	{
 		List<Presenca> presencas = new ArrayList<Presenca>();
@@ -68,7 +77,15 @@ public class AulaDao
 		
 		return aula;
 	}
-
+	
+	/**
+	 * Método responsável por atualizar no banco de dados a lista de chamada de Alunos que estiveram presente na Aula.
+	 * 
+	 * @param set contendo uma lista de Entry e List, onde o String do Entry contém o RA como key e a List contém o número de Aula
+	 * @param codigoDisciplinaConteudo contendo o codigo do conteudo
+	 * @throws SQLException Exceção lançada se houver problema com SQL
+	 * @throws ClassNotFoundException Exceção lançada se houver erro ao tentar encontrar a classe
+	 */
 	public void selecionarChamada(List<Entry<String, List<Integer>>> set, int codigoDisciplinaConteudo) throws SQLException, ClassNotFoundException 
 	{
 		

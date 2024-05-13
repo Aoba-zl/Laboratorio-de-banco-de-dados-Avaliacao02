@@ -1,5 +1,6 @@
 package com.fatec.LBDAvaliacao02.model;
 
+import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +29,23 @@ public class Disciplina
 	private List<MatriculaDisciplina> matriculaDisciplina;
 	private Professor professor;
 	
+	/**
+	 * Método responsável por fazer um Set de apenas uma matricula da lista de matricula.
+	 * 
+	 * @param md contendo um objeto do tipo MatriculaDisciplina
+	 */
 	public void setUmMatriculaDisciplina (MatriculaDisciplina md)
 	{
 		this.matriculaDisciplina = new ArrayList<>();
 		this.matriculaDisciplina.add(md);
 	}
 	
+	/**
+	 * Método responsável por fazer um Get de apenas uma matricula da lista de matricula.
+	 * 
+	 * @return Um objeto do tipo MatriculaDisciplina
+	 */
+
 	public MatriculaDisciplina getUmMatriculaDisciplina()
 	{
 		MatriculaDisciplina md = new MatriculaDisciplina();
