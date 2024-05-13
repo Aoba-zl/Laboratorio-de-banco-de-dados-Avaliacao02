@@ -13,7 +13,7 @@
 ![Caso de uso](https://github.com/Aoba-zl/Laboratorio-de-banco-de-dados-Avaliacao02/assets/99504777/fc813e8a-06e7-49d1-8e2e-31a96d2f08ec)
 
 ## Diagrama de Classe:
-![LBDAvaliacao diagrama de classe](https://github.com/Aoba-zl/Laboratorio-de-banco-de-dados-Avaliacao02/assets/99504777/7a43518a-0445-4a8c-a833-867d8c5405e0)
+![LBDAvaliacao diagrama de classe](https://github.com/Aoba-zl/Laboratorio-de-banco-de-dados-Avaliacao02/assets/99504777/7443b086-bd56-4577-bd38-1c19579d3555)
 
 ## Diagrama de Banco de Dados:
 ![LBDSistemaAcademicoFaculdade](https://github.com/Aoba-zl/Laboratorio-de-banco-de-dados-Avaliacao02/assets/99504777/c033cde5-7d8c-48ec-a02c-2341ef4063ac)
