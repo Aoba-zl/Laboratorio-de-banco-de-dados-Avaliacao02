@@ -1,8 +1,8 @@
 # Laboratorio de banco de dados - Avaliacao 2
 
-[Avaliação 1](#avaliaçao-1)
+[Avaliação 1](#avaliação-1)
 
-[Avaliação 2](#avaliaçao-2)
+[Avaliação 2](#avaliação-2)
 
 ## Requisitos do sistema:
 ![image](https://github.com/Aoba-zl/Laboratorio-de-banco-de-dados-Avaliacao02/assets/99504777/7f083fd7-2b81-4417-b58c-8d193acfbfcb)
