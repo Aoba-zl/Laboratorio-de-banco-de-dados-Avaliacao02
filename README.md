@@ -1,8 +1,8 @@
 # Laboratorio de banco de dados - Avaliacao 2
 
-### [Avaliação 1](#avaliação-1)
+### [Link para Avaliação 1](#avaliação-1)
 
-### [Avaliação 2](#avaliação-2)
+### [Link para Avaliação 2](#avaliação-2)
 
 ---
 
