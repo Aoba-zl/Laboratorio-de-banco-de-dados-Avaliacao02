@@ -13,7 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class MatriculaDisciplina 
 {
-	private String idMatricula;
-	private String codigoDisciplina;
+	private Matricula matricula;
+	private Disciplina disciplina;
 	private String status;
 }

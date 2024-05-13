@@ -16,8 +16,8 @@ import lombok.ToString;
 public class Conteudo 
 {
 	private int id;
-	private int codigoDisciplina;
 	private String nome;
 	private String descricao;
+	private Disciplina disciplina;
 	List<Aula> aula;
 }

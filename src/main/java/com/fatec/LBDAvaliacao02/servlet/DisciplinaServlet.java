@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fatec.LBDAvaliacao02.controller.DisciplinaController;
 import com.fatec.LBDAvaliacao02.model.Disciplina;
+import com.fatec.LBDAvaliacao02.model.Matricula;
 import com.fatec.LBDAvaliacao02.model.MatriculaDisciplina;
 
 /**
@@ -63,7 +64,7 @@ public class DisciplinaServlet
 				disciplinas = dControl.buscarAlunoDisciplina(ra);
 				MatriculaDisciplina md = new MatriculaDisciplina();
 				md = disciplinas.get(0).getUmMatriculaDisciplina();
-				matricula = md.getIdMatricula();
+				matricula = String.valueOf(md.getMatricula().getId());
 				
 				session.setAttribute("disciplinas", disciplinas); // Guarda a lista de disciplina na sessão.
 				session.setAttribute("matricula", matricula); // Guarda a String da matricula na sessão.
@@ -85,9 +86,14 @@ public class DisciplinaServlet
 					List<MatriculaDisciplina> mdList = new ArrayList<MatriculaDisciplina>();
 					for(String c : cod) // ForEach do código para criar MatriculaDisciplina com seus devidos valores.
 					{
+						Matricula mMd = new Matricula();
+						Disciplina dMd = new Disciplina();
 						MatriculaDisciplina md = new MatriculaDisciplina();
-						md.setCodigoDisciplina(c);
-						md.setIdMatricula(matricula);
+						dMd.setCodigo(Integer.parseInt(c));
+						md.setDisciplina(dMd);
+						
+						mMd.setId(Integer.parseInt(matricula));
+						md.setMatricula(mMd);
 						md.setStatus("Em andamento.");
 						
 						mdList.add(md);

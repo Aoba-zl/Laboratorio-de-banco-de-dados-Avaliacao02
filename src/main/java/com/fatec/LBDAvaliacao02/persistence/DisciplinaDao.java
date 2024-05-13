@@ -13,7 +13,9 @@ import org.springframework.stereotype.Repository;
 
 import com.fatec.LBDAvaliacao02.model.Aluno;
 import com.fatec.LBDAvaliacao02.model.Conteudo;
+import com.fatec.LBDAvaliacao02.model.Curso;
 import com.fatec.LBDAvaliacao02.model.Disciplina;
+import com.fatec.LBDAvaliacao02.model.Matricula;
 import com.fatec.LBDAvaliacao02.model.MatriculaDisciplina;
 
 /**
@@ -61,6 +63,9 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		while(rs.next())
 		{
 			Disciplina d = new Disciplina();
+			
+			Matricula mMd = new Matricula();
+			
 			MatriculaDisciplina md = new MatriculaDisciplina();
 			d.setCodigo(rs.getInt("codigo"));
 			d.setNome(rs.getString("nome_disciplina"));
@@ -88,7 +93,10 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 			d.setHorarioInicio(rs.getTime("horario_inicio").toLocalTime());
 			d.setHorarioFim(rs.getTime("horario_fim").toLocalTime());
 			md.setStatus(rs.getString("status"));
-			md.setIdMatricula(rs.getString("id_matricula"));
+			
+			mMd.setId(rs.getInt("id_matricula"));
+			md.setMatricula(mMd);
+			
 			d.setUmMatriculaDisciplina(md);
 			
 			disciplinas.add(d);
@@ -123,8 +131,13 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		
 		if(rs.next())
 		{
+			Curso cr = new Curso();
+			
 			d.setCodigo(rs.getInt("codigo"));
-			d.setCodigoCurso(rs.getInt("codigo_curso"));
+			
+			cr.setCodigo(rs.getInt("codigo_curso"));
+			d.setCurso(cr);
+			
 			d.setNome(rs.getString("nome_disciplina"));
 			d.setQntdHoraSemanais(rs.getInt("qntd_hora_semanais"));
 		}
@@ -252,8 +265,10 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		while(rs.next())
 		{
 			Conteudo conteudo = new Conteudo();
+			Disciplina dC = new Disciplina();
 			conteudo.setId(rs.getInt("id"));
-			conteudo.setCodigoDisciplina(rs.getInt("codigo_disciplina"));
+			dC.setCodigo(rs.getInt("codigo_disciplina"));
+			conteudo.setDisciplina(dC);
 			conteudo.setNome(rs.getString("nome"));
 			conteudo.setDescricao(rs.getString("descricao"));
 			
@@ -284,7 +299,7 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		String saida = "";
 		sql = "SELECT id_matricula FROM matricula_disciplina WHERE id_matricula = ? AND status = 'Em andamento.'";
 		PreparedStatement ps = c.prepareStatement(sql);
-		ps.setString(1, mdList.get(0).getIdMatricula());
+		ps.setInt(1, mdList.get(0).getMatricula().getId());
 		ResultSet rs = ps.executeQuery();
 		
 		if(!rs.next())
@@ -293,13 +308,13 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 			CallableStatement cs = c.prepareCall(sql);
 			for(MatriculaDisciplina md : mdList)
 			{
-				cs.setString(1, md.getIdMatricula());
-				cs.setString(2, md.getCodigoDisciplina());
+				cs.setInt(1, md.getMatricula().getId());
+				cs.setInt(2, md.getDisciplina().getCodigo());
 				cs.setString(3, md.getStatus());
 				cs.registerOutParameter(4, Types.VARCHAR);
 				cs.execute();
 			}
-			saida = cs.getString(4);			
+			saida = cs.getString(4);
 			cs.close();
 		}
 		else
@@ -334,6 +349,5 @@ public class DisciplinaDao implements ICrudDao<Disciplina>
 		cs.execute();
 		cs.close();
 		return "Disciplina dispensada";
-		
 	}
 }

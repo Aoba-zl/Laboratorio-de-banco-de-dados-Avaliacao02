@@ -19,7 +19,6 @@ import lombok.ToString;
 public class Disciplina 
 {
 	private int codigo;
-	private int codigoCurso;
 	private String nome;
 	private int qntdHoraSemanais;
 	private String diaAula;
@@ -27,6 +26,7 @@ public class Disciplina
 	private LocalTime horarioFim;
 	private List<Conteudo> conteudo = new ArrayList<>();
 	private List<MatriculaDisciplina> matriculaDisciplina;
+	private Curso curso;
 	private Professor professor;
 	
 	/**
