@@ -1,6 +1,8 @@
 package com.fatec.LBDAvaliacao02.controller;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -43,7 +45,7 @@ public class AlunoController
      * @throws ClassNotFoundException Se a classe não for encontrada.
      */
 	public String alterar(Aluno aluno,Curso curso) throws SQLException, ClassNotFoundException {
-		String saida = checkAluno(aluno);
+		String saida = checkAluno(aluno,curso);
 		if (saida.contains("correto")) {
 			GenericDao gDao = new GenericDao();
 			AlunoDao aDao = new AlunoDao(gDao);
@@ -103,8 +105,10 @@ public class AlunoController
 
 	private String checkTel (Aluno aluno) {
 		String todo="";
+		if (aluno.getTelefone() == null) {return "Ao menos 1 telefone deve ser preenchido";}
 		for (Telefone t : aluno.getTelefone()) {
 			if (t.getNumero().length() < 8 && t.getNumero() != "" ) {return "Telefone invalido";}
+			if (t.getNumero().length() > 9) {return "Telefone invalido";}
 			todo = todo + t.getNumero();
 		}
 		if (todo.length() <1) {return "Ao menos 1 telefone deve ser preenchido";}
@@ -120,9 +124,14 @@ public class AlunoController
 		}
 		if (aluno.getInstituicaoConclusaoSegGrau().length() > 100 || aluno.getInstituicaoConclusaoSegGrau() == "") {return "Nome da Instituição invalido!";}
 		if (aluno.getDtNascimento() == null) {return "Data de nascimento invalido!";}
+		if (aluno.getDtNascimento().isAfter(LocalDate.now())) {return "Data de nascimento invalido!";}
+		if (Period.between(aluno.getDtNascimento(), LocalDate.now()).getYears() < 15) {return "Tem que ser maior de 15 anos!";}
 		if (aluno.getDtConclusaoSegGrau() == null) {return "Data de conclusão invalido!";}
+		if (aluno.getDtConclusaoSegGrau().isAfter(LocalDate.now())) {return "Data de conclusão invalido!";}
 		if (aluno.getVestibular().getPontuacao() < 0) {return "Pontuação invalida!";}	
+		if (aluno.getVestibular().getPontuacao() >= 1000) {return "Pontuação invalida!";}	
 		if (aluno.getVestibular().getPosicao() < 1) {return "Posição invalida!";}
+		if (aluno.getVestibular().getPosicao() > 99999999) {return "Posição invalida!";}
 		String saida = checkTel(aluno);
 		if (saida != "correto") {return saida;}
 		return "correto";

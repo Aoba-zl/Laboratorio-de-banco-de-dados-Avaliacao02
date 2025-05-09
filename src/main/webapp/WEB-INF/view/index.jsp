@@ -34,9 +34,6 @@
 							<div class="col-auto p-0 text-center" style="width: 160px;">
 								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='./curso'">Ver Cursos</button>
 							</div>
-							<div class="col-auto p-0 text-center" style="width: 160px;">
-								<button class="btn btn-outline-primary" style="width: 150px" OnClick="window.location.href='./lista-chamada'">Lista de chamada</button>
-							</div>
 						</div>
 					</div>
 				</div>

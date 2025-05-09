@@ -1,20 +1,16 @@
 package com.fatec.LBDAvaliacao02.servlet;
 
-import jakarta.servlet.http.HttpServlet;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.fatec.LBDAvaliacao02.controller.AlunoController;
 import com.fatec.LBDAvaliacao02.controller.CursoController;
 import com.fatec.LBDAvaliacao02.model.Aluno;
@@ -89,7 +85,7 @@ public class AlunoServlet
 				aluno.setDtNascimento(toLocalDate(dtNascimento));
 			}
 			aluno.setEmailPessoal(emailPessoal);
-			if (!emailCorporativo.trim().contains("")) {
+			if (emailCorporativo.trim().length() > 2) {
 				aluno.setEmailCorporativo(emailCorporativo);
 			} else {
 				aluno.setEmailCorporativo(null);
@@ -161,6 +157,8 @@ public class AlunoServlet
 			model.addAttribute("cursos",cursos);
 			if (cmd.contains("Buscar") && aluno.getTelefone().size() != 0) {
 				model.addAttribute("telefones",aluno.getTelefone());
+			} else {
+				model.addAttribute("telefones",telefones);
 			}
 		}
 		return new ModelAndView("aluno");
